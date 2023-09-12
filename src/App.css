@@ -1,38 +1,79 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
+  min-height: 90vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.imgContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.image {
+  width: 48rem;
+  height: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+
+  overflow: hidden;
+  transform: all 0.2s ease-in-out;
+}
+
+.image:hover {
+  box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.13);
+}
+
+.image img {
+  width: calc(100% + 1rem);
+  height: calc(100% + 0.5rem);
+  object-fit: cover;
+  object-position: center;
+}
+
+.colorList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.colorList li {
+  position: relative;
+  list-style: none;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 0px rgba(39, 174, 96, 0.9);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.colorList li:hover {
+  transform: translateY(-5px);
+}
+
+.colorList li span {
+  position: absolute;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  bottom: 0;
+  border-top: 2px solid #ffffff2f;
+  border-bottom-right-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #02203c;
+  background-color: rgba(255, 255, 255, 0.14);
 }

@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import DisplayImage from "./components/DisplayImage";
+import ColorThief from "colorthief";
+
+const gallery = <i className='fas fa-images'></i>;
 
 function App() {
+  const [uploadedImg, setUploadedImg] = useState(null);
+  const [colorPalette, setColorPalette] = useState(null);
+
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async (event) => {
+      const img = new Image();
+
+      img.onload = async () => {
+        const colorThief = new ColorThief();
+        const palette = colorThief.getPalette(img, 6);
+        setColorPalette(palette);
+        setUploadedImg(event.target.result);
+      };
+      img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <section className='App'>
+      <header>
+        <h1>Palette Gen</h1>
+
+        <div className='input'>
+          <label htmlFor='file'>{gallery} Upload Image</label>
+          <input type='file' id='file' hidden onChange={(e) => handleUploadImage(e)} />
+        </div>
       </header>
-    </div>
+
+      <main className='main'>
+        <DisplayImage uploadedImage={uploadedImg} colorPalette={colorPalette} />
+      </main>
+    </section>
   );
 }
 
